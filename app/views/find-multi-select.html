@@ -11,32 +11,87 @@
       <h1 class="govuk-heading-xl">Find an intervention</h1>
 
       <p>
-        Use this service to find an intervention. You can search by keyword or postcode, or you can search with both. You can also browse by need.
+        If you're a probation practitioner, you can use this service to find interventions, such as:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          accredited programmes
+        </li>
+        <li>
+         rehabilitation and resettlement interventions 
+        </li>
+      </ul>
+      
+      <p>
+       You can search by keyword, postcode, criminogenic needs and risks. You can also browse by need, region and category.
       </p>
 
       <form action="/results">
         <div class="govuk-form-group">
           <label for="location" class="govuk-label">Location</label>
-          <input id="location" class="govuk-input" name="location" placeholder="e.g. London">
+          <input id="location" class="govuk-input" name="location" placeholder="For example London">
         </div>
 
         <div class="govuk-form-group">
           <label for="needs" class="govuk-label">Criminogenic needs</label>
-          <input id="needs" class="govuk-input" name="needs" placeholder="e.g. Drug misuse">
+          <select id="needs" name="needs" class="govuk-select" multiple="multiple" data-auto-complete="true">
+            <option value="accommodation">Accommodation</option>
+            <option value="education-training-and-employment">Education, training and employment</option>
+            <option value="finances">Finances</option>
+            <option value="relationships">Relationships</option>
+            <option value="emotional-well-being">Emotional well-being</option>
+            <option value="drugs">Drugs</option>
+            <option value="alcohol">Alcohol</option>
+            <option value="lifestyle-and-associates">Lifestyle and associates</option>
+            <option value="attitudes">Attitudes</option>
+            <option value="thinking-skills">Thinking skills</option>
+            <option value="health">Health</option>
+          </select>
         </div>
 
         <div class="govuk-form-group">
           <label for="risks" class="govuk-label">Risks</label>
-          <input id="risks" class="govuk-input" name="risks" placeholder="e.g. OGRS">
+          <select id="risks" name="risks" class="govuk-select" multiple="multiple" data-auto-complete="true">
+            <optgroup label="OGRS3">
+              <option value="ogrs3-75-and-above">OGRS3 - 75% and above</option>
+              <option value="ogrs3-50-to-74">OGRS3 - 50% to 74%</option>
+              <option value="ogrs3-25-to-49">OGRS3 - 25% to 49%</option>
+              <option value="ogrs3-0-to-24">OGRS3 - 0 to 24%</option>
+            </optgroup>
+
+            <optgroup label="RoSH">
+              <option value="rosh-high">RoSH - High</option>
+              <option value="rosh-medium">RoSH - Medium</option>
+              <option value="rosh-low">RoSH - Low</option>
+            </optgroup>
+
+            <optgroup label="RM2000">
+              <option value="rm2000-very-high">RM2000 - Very High</option>
+              <option value="rm2000-high">RM2000 - High</option>
+              <option value="rm2000-medium">RM2000 - Medium</option>
+              <option value="rm2000-low">RM2000 - Low</option>
+            </optgroup>
+
+            <optgroup label="SARA">
+              <option value="sara-high">SARA - High</option>
+              <option value="sara-medium">SARA - Medium</option>
+              <option value="sara-low">SARA - Low</option>
+              <option value="sara-none">SARA - None</option>
+            </optgroup>
+          </select>
         </div>
 
         <div class="govuk-form-group">
           <label for="text" class="govuk-label">Title and description of interventions</label>
-          <input id="text" class="govuk-input" name="text" placeholder="e.g. Wellbeing">
+          <input id="text" class="govuk-input" name="text" placeholder="For example Wellbeing">
         </div>
 
         <input type="submit" class="govuk-button" value="Search">
       </form>
+
+      <p>
+        <a class="govuk-link" href="#">Do you want to import the service user’s information?</a>
+      </p>
 
       <p>
         <a href="#" class="govuk-link">Advanced search</a>
@@ -54,7 +109,7 @@
           <a href="/results?need=education-training-and-employment">Education, training and employment</a>
         </li>
         <li>
-          <a href="/results?need=finance">Finance</a>
+          <a href="/results?need=finances">Finances</a>
         </li>
         <li>
           <a href="/results?need=relationships">Relationships</a>
@@ -76,6 +131,9 @@
         </li>
         <li>
           <a href="/results?need=attitudes">Attitudes</a>
+        </li>
+        <li>
+          <a href="/results?need=health">Health</a>
         </li>
       </ul>
 
@@ -143,22 +201,22 @@
           <a href="/results?category=female-only">Female only</a>
         </li>
         <li>
-          <a href="/results?category=ogrs-50-to-74">OGRS 50-74</a>
+          <a href="/results?category=ogrs-50-to-74">OGRS 50% to 74%</a>
         </li>
         <li>
-          <a href="/results?category=ogrs-25-to-49">OGRS 25-49</a>
+          <a href="/results?category=ogrs-25-to-49">OGRS 25% to 49%</a>
         </li>
         <li>
           <a href="/results?category=high-sara">High SARA</a>
         </li>
         <li>
-          <a href="/results?category=very-high-rosh">Very High RoSH</a>
+          <a href="/results?category=very-high-rosh">Very high RoSH</a>
         </li>
         <li>
           <a href="/results?category=low-rosh">Low RoSH</a>
         </li>
         <li>
-          <a href="/results?category=6-to-12-sessions-per-day">6-12 sessions per day</a>
+          <a href="/results?category=6-to-12-sessions-per-day">6 to 12 sessions per day</a>
         </li>
       </ul>
     </div>
@@ -167,7 +225,7 @@
       <h2 class="govuk-heading-s">Useful links</h2>
       <ul class="govuk-list">
         <li>
-          <a href="#" class="govuk-link">Link 1</a>
+          <a href="/find-free-text" class="govuk-link">Link 1</a>
         </li>
         <li>
           <a href="#" class="govuk-link">Link 2</a>
