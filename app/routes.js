@@ -8,10 +8,8 @@ const router = express.Router();
 // Add your routes here - above the module.exports line
 
 async function createAuthenticatedApiClient() {
-  const client = new HmppsOffenderAssessmentApi.ApiClient();
-
-  // For some reason the default basePath is https, which doesn't work
-  client.basePath = "http://localhost:8080";
+  const assessmentsApiBasePath = process.env.ASSESSMENTS_API_BASEPATH || 'http://localhost:8080'
+  const client = new HmppsOffenderAssessmentApi.ApiClient(assessmentsApiBasePath);
 
   // https://github.com/ministryofjustice/offender-assessments-api-kotlin/#oauth-security
   const authTokenResponse = await axios.post(
