@@ -9,11 +9,13 @@ const router = express.Router();
 
 async function createAuthenticatedApiClient() {
   const assessmentsApiBasePath = process.env.ASSESSMENTS_API_BASEPATH || 'http://localhost:8080'
+  const oauthBasePath = process.env.OAUTH_BASEPATH || 'http://localhost:9090'
+
   const client = new HmppsOffenderAssessmentApi.ApiClient(assessmentsApiBasePath);
 
   // https://github.com/ministryofjustice/offender-assessments-api-kotlin/#oauth-security
   const authTokenResponse = await axios.post(
-    "http://localhost:9090/auth/oauth/token?grant_type=client_credentials",
+    oauthBasePath + "/auth/oauth/token?grant_type=client_credentials",
     {},
     {
       headers: {
