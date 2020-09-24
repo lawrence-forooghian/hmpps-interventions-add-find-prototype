@@ -10,6 +10,7 @@ const router = express.Router();
 async function createAuthenticatedApiClient() {
   const assessmentsApiBasePath = process.env.ASSESSMENTS_API_BASEPATH || 'http://localhost:8080'
   const oauthBasePath = process.env.OAUTH_BASEPATH || 'http://localhost:9090'
+  const oauthClientAuth = process.env.OAUTH_CLIENT_AUTHORIZATION || 'sentence-plan-api-client:clientsecret'
 
   const client = new HmppsOffenderAssessmentApi.ApiClient(assessmentsApiBasePath);
 
@@ -19,10 +20,7 @@ async function createAuthenticatedApiClient() {
     {},
     {
       headers: {
-        Authorization: `Basic ${Buffer.from(
-          "sentence-plan-api-client:clientsecret",
-          "utf8"
-        ).toString("base64")}`,
+        Authorization: `Basic ${Buffer.from(oauthClientAuth, "utf8").toString("base64")}`,
       },
     }
   );
