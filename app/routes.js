@@ -8,21 +8,19 @@ const router = express.Router();
 // Add your routes here - above the module.exports line
 
 async function createAuthenticatedApiClient() {
-  const client = new HmppsOffenderAssessmentApi.ApiClient();
+  const assessmentsApiBasePath = process.env.ASSESSMENTS_API_BASEPATH || 'http://localhost:8080'
+  const oauthBasePath = process.env.OAUTH_BASEPATH || 'http://localhost:9090'
+  const oauthClientAuth = process.env.OAUTH_CLIENT_AUTHORIZATION || 'sentence-plan-api-client:clientsecret'
 
-  // For some reason the default basePath is https, which doesn't work
-  client.basePath = "http://localhost:8080";
+  const client = new HmppsOffenderAssessmentApi.ApiClient(assessmentsApiBasePath);
 
   // https://github.com/ministryofjustice/offender-assessments-api-kotlin/#oauth-security
   const authTokenResponse = await axios.post(
-    "http://localhost:9090/auth/oauth/token?grant_type=client_credentials",
+    oauthBasePath + "/auth/oauth/token?grant_type=client_credentials",
     {},
     {
       headers: {
-        Authorization: `Basic ${Buffer.from(
-          "sentence-plan-api-client:clientsecret",
-          "utf8"
-        ).toString("base64")}`,
+        Authorization: `Basic ${Buffer.from(oauthClientAuth, "utf8").toString("base64")}`,
       },
     }
   );
